@@ -1,20 +1,10 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import restaurants from "../../../assets/data/restaurants.json";
+import BasketDishItem from "../../components/BasketDishItem";
 
 const restaurant = restaurants[0]
 
-const BasketDishItem = ({ basketDish }) => {
-  return (
-    <View style={styles.row}>
-      <View style={styles.quantityContainer}>
-        <Text>1</Text>
-      </View>
-      <Text style={{ fontWeight: "600" }}>{basketDish.name}</Text>
-      <Text style={{ marginLeft: "auto" }}>${basketDish.price}</Text>
-    </View>
-  );
-};
 const Basket = () => {
 
   return (
@@ -59,6 +49,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginVertical: 15,
+    paddingHorizontal: 10,
   },
   quantity: {
     fontSize: 25,
@@ -85,6 +76,6 @@ const styles = StyleSheet.create({
   itemsTitle: {
     fontWeight: "bold",
     marginTop: 20,
-    fontSize: 19
-  }
+    fontSize: 19,
+  },
 });

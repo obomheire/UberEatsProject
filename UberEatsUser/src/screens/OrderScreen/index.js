@@ -6,9 +6,9 @@ import orders from "../../../assets/data/orders.json";
 const OrderScreen = () => {
     return (
       <View style={styles.container}>
-        <View style={{ alignItems: "center" }}>
-          <Text style={{ fontWeight: "600", fontSize: 16 }}>Your Order</Text>
-        </View>
+        {/* <View style={{ alignItems: "center" }}>
+          <Text style={{ fontWeight: "600", fontSize: 16 }}>Your Orders</Text>
+        </View> */}
         <FlatList
           data={orders}
           renderItem={({ item }) => <OrderListItem order={item} />}

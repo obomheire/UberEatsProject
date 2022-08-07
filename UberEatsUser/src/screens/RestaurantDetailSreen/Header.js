@@ -4,7 +4,7 @@ import styles from "./styles";
 
 const Header = ({ restaurant }) => {
   return (
-    <View>
+    <View style={styles.page}>
       <Image
         source={{
           uri: restaurant.image,
