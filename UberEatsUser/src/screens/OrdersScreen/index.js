@@ -3,7 +3,7 @@ import React from "react";
 import OrderListItem from "../../components/OrderListItem";
 import orders from "../../../assets/data/orders.json";
 
-const OrderScreen = () => {
+const OrdersScreen = () => {
     return (
       <View style={styles.container}>
         {/* <View style={{ alignItems: "center" }}>
@@ -17,7 +17,7 @@ const OrderScreen = () => {
     );
 };
 
-export default OrderScreen;
+export default OrdersScreen;
 
 const styles = StyleSheet.create({
   container: {

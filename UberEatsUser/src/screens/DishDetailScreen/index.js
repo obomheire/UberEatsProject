@@ -1,18 +1,21 @@
-import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import { StyleSheet, Text, View, Pressable } from "react-native";
+import { useState } from "react";
 import restaurants from "../../../assets/data/restaurants.json";
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const dish = restaurants[0].dishes[0];
 
 const DishDetailSreen = () => {
+  const navigation = useNavigation();
+
   const [quantity, setQuantity] = useState(1);
 
   const onMinus = () => quantity > 1 && setQuantity(quantity - 1);
 
-    const onPlus = () => setQuantity(quantity + 1);
-    
-    const getTotal = () => (dish.price * quantity).toFixed(2);
+  const onPlus = () => setQuantity(quantity + 1);
+
+  const getTotal = () => (dish.price * quantity).toFixed(2);
 
   return (
     <View style={styles.page}>
@@ -36,11 +39,14 @@ const DishDetailSreen = () => {
         />
       </View>
 
-      <View style={styles.button}>
+      <Pressable
+        onPress={() => navigation.navigate("Basket")}
+        style={styles.button}
+      >
         <Text style={styles.buttonText}>
           Add {quantity} to basket &#8226; ($ {getTotal()})
         </Text>
-      </View>
+      </Pressable>
     </View>
   );
 };
@@ -76,16 +82,16 @@ const styles = StyleSheet.create({
   quantity: {
     fontSize: 25,
     marginHorizontal: 20,
-    },
-    button: {
-        backgroundColor: "black",
-        marginTop: "auto",
-        padding: 20,
-        alignItems: "center"
-    },
-    buttonText: {
-        color: "white",
-        fontWeight: "600",
-        fontSize: "18"
-    }
+  },
+  button: {
+    backgroundColor: "black",
+    marginTop: "auto",
+    padding: 20,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "600",
+    fontSize: "18",
+  },
 });
