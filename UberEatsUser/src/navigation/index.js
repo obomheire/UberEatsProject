@@ -6,19 +6,24 @@ import RestaurantDetailSreen from "../screens/RestaurantDetailSreen";
 import DishDetailScreen from "../screens/DishDetailScreen";
 import OrdersScreen from "../screens/OrdersScreen";
 import OrderDetailScreen from "../screens/OrderDetailScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 import Basket from "../screens/Basket";
+import { useAuthContext } from "../contexts/AuthContext";
+
 
 const Stack = createNativeStackNavigator();
 
 function RootNavigator() {
+
+  const { dbUser } = useAuthContext();
+
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="HomeTabs" component={HomeTabs} />
-      {/* <Stack.Screen
-        name="Restaurant"
-        component={RestaurantDetailSreen}
-        options={{ headerShown: false }}
-      /> */}
+      {dbUser ? (
+        <Stack.Screen name="HomeTabs" component={HomeTabs} />
+      ) : (
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+      )}
     </Stack.Navigator>
   );
 }
@@ -50,7 +55,7 @@ const HomeTabs = () => {
 
       <Tab.Screen
         name="profile"
-        component={OrdersScreen}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name="user-alt" size={24} color={color} />
@@ -67,7 +72,11 @@ const HomeStackScreen = () => {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen name="Restaurants" component={HomeScreen} />
-      <HomeStack.Screen name="Restaurant" component={RestaurantDetailSreen} />
+      <HomeStack.Screen
+        name="Restaurant"
+        component={RestaurantDetailSreen}
+        options={{ headerShown: false }}
+      />
       <HomeStack.Screen name="Dish" component={DishDetailScreen} />
       <HomeStack.Screen name="Basket" component={Basket} />
     </HomeStack.Navigator>

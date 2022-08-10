@@ -1,24 +1,29 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View, Pressable } from "react-native";
 import React from "react";
 import restaurants from "../../../assets/data/restaurants.json";
 import BasketDishItem from "../../components/BasketDishItem";
+import { useOrderContext } from "../../contexts/OrderContext";
 
-const restaurant = restaurants[0]
+const restaurant = restaurants[0];
 
 const Basket = () => {
+  const { createOrder } = useOrderContext();
 
   return (
     <View style={styles.page}>
       <Text style={styles.name}>{restaurant.name}</Text>
       <Text style={styles.itemsTitle}>Your Items</Text>
 
-      <FlatList data={restaurant.dishes} renderItem={({item}) => <BasketDishItem basketDish={item}/>} />
+      <FlatList
+        data={restaurant.dishes}
+        renderItem={({ item }) => <BasketDishItem basketDish={item} />}
+      />
 
       <View style={styles.seperator} />
 
-      <View style={styles.button}>
+      <Pressable onPress={createOrder} style={styles.button}>
         <Text style={styles.buttonText}>Create order</Text>
-      </View>
+      </Pressable>
     </View>
   );
 };
